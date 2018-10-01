@@ -8,9 +8,10 @@
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">72</property>
     <parameters>
-        <scalar-parameter name="numero_necesidad" id="6">
+        <scalar-parameter name="solicitud" id="6">
             <text-property name="promptText">Número de la Necesidad</text-property>
             <property name="valueType">static</property>
+            <property name="isRequired">true</property>
             <property name="dataType">integer</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
@@ -25,13 +26,59 @@
         </scalar-parameter>
         <scalar-parameter name="unidad_ejecutora" id="59">
             <property name="valueType">dynamic</property>
+            <property name="isRequired">true</property>
             <property name="dataSetName">Dset_unidad_ejecutora</property>
             <expression name="valueExpr" type="javascript">dataSetRow["id"]</expression>
             <expression name="labelExpr" type="javascript">dataSetRow["nombre"]</expression>
             <expression name="sortByColumn">dataSetRow["id"]</expression>
             <property name="sortDirection">asc</property>
-            <property name="dataType">string</property>
+            <property name="dataType">integer</property>
             <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">1</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">false</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="vigencia_disponibilidad" id="83">
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">Dset_vigencia_disponibilidad</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["vigencia"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["vigencia"]</expression>
+            <expression name="sortByColumn">dataSetRow["vigencia"]</expression>
+            <property name="sortDirection">desc</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2018</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">false</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="fuente_financiamiento" id="85">
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">Dset_fuente_financiamiento</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["id"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["nombre"]</expression>
+            <expression name="sortByColumn">dataSetRow["nombre"]</expression>
+            <property name="sortDirection">desc</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">0</value>
+            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">list-box</property>
@@ -166,7 +213,9 @@ where numero = ?;]]></xml-property>
                 <structure>
                     <property name="name">unidad_ejecutora</property>
                     <property name="paramName">unidad_ejecutora</property>
-                    <property name="dataType">string</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
                     <property name="position">1</property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
@@ -206,7 +255,8 @@ where numero = ?;]]></xml-property>
             <xml-property name="queryText"><![CDATA[SELECT en.nombre, en.codigo_entidad 
 FROM financiera.entidad en 
 INNER JOIN financiera.unidad_ejecutora ue 
-ON en.id = ue.entidad;]]></xml-property>
+ON en.id = ue.entidad
+WHERE ue.id = ?;]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -307,11 +357,13 @@ ON en.id = ue.entidad;]]></xml-property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
                     <text-property name="displayName">id</text-property>
                     <text-property name="heading">id</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">nombre</property>
+                    <property name="analysis">dimension</property>
                     <text-property name="displayName">nombre</text-property>
                     <text-property name="heading">nombre</text-property>
                 </structure>
@@ -403,6 +455,679 @@ from financiera.unidad_ejecutora;]]></xml-property>
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Dset_vigencia_disponibilidad" id="82">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">vigencia</property>
+                    <text-property name="displayName">vigencia</text-property>
+                    <text-property name="heading">vigencia</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">vigencia</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Dsource_159</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">vigencia</property>
+                    <property name="nativeName">vigencia</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT DISTINCT ON(vigencia) vigencia 
+FROM financiera.disponibilidad;]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>vigencia</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>vigencia</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>vigencia</design:label>
+            <design:formattingHints>
+              <design:displaySize>5</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Dset_fuente_financiamiento" id="84">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">descripcion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">descripcion</text-property>
+                    <text-property name="heading">descripcion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">nombre</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">nombre</text-property>
+                    <text-property name="heading">nombre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">codigo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">codigo</text-property>
+                    <text-property name="heading">codigo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">tipo_fuente_financiamiento</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">tipo_fuente_financiamiento</text-property>
+                    <text-property name="heading">tipo_fuente_financiamiento</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">nombre</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">codigo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">tipo_fuente_financiamiento</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Dsource_159</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">descripcion</property>
+                    <property name="nativeName">descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">nombre</property>
+                    <property name="nativeName">nombre</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">codigo</property>
+                    <property name="nativeName">codigo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">tipo_fuente_financiamiento</property>
+                    <property name="nativeName">tipo_fuente_financiamiento</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT * 
+FROM financiera.fuente_financiamiento;]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>descripcion</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>250</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>250</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>nombre</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>250</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>nombre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>nombre</design:label>
+            <design:formattingHints>
+              <design:displaySize>250</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>codigo</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>6</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>codigo</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>codigo</design:label>
+            <design:formattingHints>
+              <design:displaySize>6</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>tipo_fuente_financiamiento</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>tipo_fuente_financiamiento</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>tipo_fuente_financiamiento</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Dset_disponibilidad" id="86">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">codigo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">codigo</text-property>
+                    <text-property name="heading">codigo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">nombre</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">nombre</text-property>
+                    <text-property name="heading">nombre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">valor</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">valor</text-property>
+                    <text-property name="heading">valor</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">numero_disponibilidad</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">numero_disponibilidad</text-property>
+                    <text-property name="heading">numero_disponibilidad</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">vigencia</property>
+                    <property name="paramName">vigencia_disponibilidad</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">2</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">fuente_financiamiento</property>
+                    <property name="paramName">fuente_financiamiento</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">unidad_ejecutora</property>
+                    <property name="paramName">unidad_ejecutora</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">5</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">solicitud</property>
+                    <property name="paramName">solicitud</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">codigo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">nombre</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">valor</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">numero_disponibilidad</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Dsource_159</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">codigo</property>
+                    <property name="nativeName">codigo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">nombre</property>
+                    <property name="nativeName">nombre</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">valor</property>
+                    <property name="nativeName">valor</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">numero_disponibilidad</property>
+                    <property name="nativeName">numero_disponibilidad</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT rub.codigo, rub.nombre, diapr.valor, dis.numero_disponibilidad
+FROM financiera.disponibilidad dis 
+INNER JOIN financiera.disponibilidad_apropiacion diapr 
+ON dis.id = diapr.disponibilidad
+INNER JOIN financiera.apropiacion apr 
+ON diapr.apropiacion = apr.id
+INNER JOIN financiera.rubro rub 
+ON rub.id = apr.rubro
+WHERE dis.vigencia = ? 
+AND diapr.fuente_financiamiento = ?
+AND rub.unidad_ejecutora = ?
+AND dis.solicitud = ? ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>vigencia</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>vigencia</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>vigencia</design:label>
+            <design:formattingHints>
+              <design:displaySize>5</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>numero_disponibilidad</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>6</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>numero_disponibilidad</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>numero_disponibilidad</design:label>
+            <design:formattingHints>
+              <design:displaySize>7</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>responsable</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>responsable</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>responsable</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>fecha_registro</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>13</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>fecha_registro</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>fecha_registro</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>estado</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>5</design:nativeDataTypeCode>
+            <design:precision>5</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>estado</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>estado</design:label>
+            <design:formattingHints>
+              <design:displaySize>6</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>solicitud</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>solicitud</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>solicitud</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Dset_solicitud_disponibilidad" id="126">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">objeto</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">objeto</text-property>
+                    <text-property name="heading">objeto</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">solicitud</property>
+                    <property name="paramName">solicitud</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">objeto</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Dsource_159</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">objeto</property>
+                    <property name="nativeName">objeto</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT nec.objeto
+FROM administrativa.solicitud_disponibilidad soldis
+INNER JOIN administrativa.necesidad nec
+ON soldis.necesidad = nec.id
+WHERE soldis.id = ?;]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>objeto</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>700</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>objeto</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>objeto</design:label>
+            <design:formattingHints>
+              <design:displaySize>700</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
     </data-sets>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
@@ -452,17 +1177,236 @@ from financiera.unidad_ejecutora;]]></xml-property>
             <text-property name="text">UNIVERSIDAD DISTRITAL FRANCISCO JOSÉ DE CALDAS</text-property>
         </label>
         <data id="61">
+            <property name="textAlign">center</property>
             <property name="dataSet">Dset_entidad</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">nombre</property>
                     <text-property name="displayName">nombre</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["nombre"] +" - "+dataSetRow["codigo_entidad"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["codigo_entidad"] +" - "+dataSetRow["nombre"]</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <property name="resultSetColumn">nombre</property>
+        </data>
+        <data id="81">
+            <property name="textAlign">center</property>
+            <property name="dataSet">Dset_unidad_ejecutora</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">nombre</property>
+                    <text-property name="displayName">nombre</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["id"]+" - "+dataSetRow["nombre"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">nombre</property>
+        </data>
+        <label id="115">
+            <text-property name="text"> </text-property>
+        </label>
+        <data id="114">
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <property name="dataSet">Dset_disponibilidad</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">numero_disponibilidad</property>
+                    <text-property name="displayName">numero_disponibilidad</text-property>
+                    <expression name="expression" type="javascript">"CERTIFICADO DE DISPONIBILIDAD PRESUPUESTAL No. "+dataSetRow["numero_disponibilidad"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">numero_disponibilidad</property>
+        </data>
+        <label id="116">
+            <text-property name="text"> </text-property>
+        </label>
+        <label id="88">
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">EL SUSCRITO RESPONSABLE DE PRESUPUESTO CERTIFICA</text-property>
+        </label>
+        <data id="117">
+            <property name="textAlign">right</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">solicitud</property>
+                    <expression name="expression" type="javascript">"No. solicitud necesidad: "+params["solicitud"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">solicitud</property>
+        </data>
+        <label id="113">
+            <text-property name="text"> </text-property>
+        </label>
+        <data id="118">
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">vigencia_disponibilidad</property>
+                    <expression name="expression" type="javascript">"Que el presupuesto de gastos e inversiones de la vigencia "+params["vigencia_disponibilidad"]+" existe apropiación disponible para la presewnte solicitud así:"</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">vigencia_disponibilidad</property>
+        </data>
+        <table id="90">
+            <property name="dataSet">Dset_disponibilidad</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">codigo</property>
+                    <text-property name="displayName">codigo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["codigo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">nombre</property>
+                    <text-property name="displayName">nombre</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["nombre"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">valor</property>
+                    <text-property name="displayName">valor</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["valor"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <expression name="expression" type="javascript">Total.sum(row["valor"])</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="103"/>
+            <column id="104"/>
+            <column id="105"/>
+            <header>
+                <row id="91">
+                    <cell id="92">
+                        <label id="106">
+                            <property name="fontWeight">bold</property>
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">medium</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">medium</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">medium</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">medium</property>
+                            <text-property name="text">CODIGO PRESUPUESTAL</text-property>
+                        </label>
+                    </cell>
+                    <cell id="93">
+                        <label id="108">
+                            <property name="fontWeight">bold</property>
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">medium</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">medium</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">medium</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">medium</property>
+                            <text-property name="text">CONCEPTO</text-property>
+                        </label>
+                    </cell>
+                    <cell id="94">
+                        <label id="110">
+                            <property name="fontWeight">bold</property>
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">medium</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">medium</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">medium</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">medium</property>
+                            <text-property name="text">VALOR</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="95">
+                    <cell id="96">
+                        <data id="107">
+                            <property name="resultSetColumn">codigo</property>
+                        </data>
+                    </cell>
+                    <cell id="97">
+                        <data id="109">
+                            <property name="resultSetColumn">nombre</property>
+                        </data>
+                    </cell>
+                    <cell id="98">
+                        <data id="111">
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">valor</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="119">
+                    <cell id="120"/>
+                    <cell id="121">
+                        <label id="123">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">TOTAL</text-property>
+                        </label>
+                    </cell>
+                    <cell id="122">
+                        <data id="125">
+                            <property name="borderBottomStyle">solid</property>
+                            <property name="borderBottomWidth">thin</property>
+                            <property name="borderLeftStyle">solid</property>
+                            <property name="borderLeftWidth">thin</property>
+                            <property name="borderRightStyle">solid</property>
+                            <property name="borderRightWidth">thin</property>
+                            <property name="borderTopStyle">solid</property>
+                            <property name="borderTopWidth">thin</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$#,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+        <label id="128">
+            <text-property name="text"> </text-property>
+        </label>
+        <label id="127">
+            <property name="fontWeight">bold</property>
+            <text-property name="text">OBJETO:</text-property>
+        </label>
+        <data id="129">
+            <property name="dataSet">Dset_solicitud_disponibilidad</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">objeto</property>
+                    <text-property name="displayName">objeto</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["objeto"].toUpperCase()</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">objeto</property>
         </data>
     </body>
 </report>
