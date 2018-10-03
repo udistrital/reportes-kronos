@@ -1,17 +1,20 @@
---SELECT * FROM administrativa.necesidad LIMIT 10;
-SELECT * FROM administrativa.detalle_servicio_necesidad LIMIT 10;
+SELECT id,nombre FROM oikos.dependencia WHERE id = 122;
 /*
-SELECT * 
-FROM administrativa.solicitud_disponibilidad soldis
-INNER JOIN administrativa.necesidad nec
-ON soldis.necesidad = nec.id
-WHERE soldis.id = 98301;
+SELECT * FROM administrativa.solicitud_disponibilidad WHERE id = 12;
 
-SELECT * FROM financiera.disponibilidad WHERE vigencia = 2018; --solicitud
---SELECT * FROM administrativa.solicitud_disponibilidad WHERE id = 101353;
---SELECT * FROM administrativa.necesidad WHERE numero = 0;
-SELECT * FROM financiera.apropiacion;
-SELECT * FROM financiera.rubro;
-SELECT * FROM financiera.fuente_financiamiento;
-SELECT * FROM financiera.disponibilidad_apropiacion;
+SELECT nec.id, nec.numero, dpnec.id, dpnec.necesidad, 
+dpnec.jefe_dependencia_solicitante, soldis.id, soldis.necesidad
+FROM administrativa.necesidad nec 
+INNER JOIN administrativa.dependencia_necesidad dpnec 
+ON nec.id = dpnec.necesidad
+INNER JOIN administrativa.solicitud_disponibilidad soldis
+ON nec.id = soldis.necesidad
+WHERE nec.vigencia = 2018
+AND soldis.id = 12;
+
+SELECT * FROM core.jefe_dependencia WHERE id = 6;
+
+--SELECT * FROM administrativa.estado_necesidad;
+--SELECT * FROM administrativa.necesidad WHERE id = 99423;
+--SELECT * FROM administrativa.dependencia_necesidad LIMIT 10;
 */

@@ -77,13 +77,27 @@
             <property name="dataType">integer</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">0</value>
+                <value type="constant">98</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">list-box</property>
             <property name="mustMatch">false</property>
             <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="UsuarioElaboro" id="161">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">jcsarmientor</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
             </structure>
@@ -112,88 +126,30 @@
             <property name="odaUser">crud_user</property>
             <encrypted-property name="odaPassword" encryptionID="base64">cGFzc3dvcmQ=</encrypted-property>
         </oda-data-source>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Dsource_pruebas_nube" id="132">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://pruebaspostgres.c8an9arwoaua.us-east-1.rds.amazonaws.com:5432/udistrital</property>
+            <property name="odaUser">consulta_crv</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">Y3ZpbGw0PTEyMyE=</encrypted-property>
+        </oda-data-source>
     </data-sources>
     <data-sets>
-        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Dset_necesidad" id="5">
-            <list-property name="columnHints">
-                <structure>
-                    <property name="columnName">numero</property>
-                    <property name="analysis">measure</property>
-                    <text-property name="displayName">numero</text-property>
-                    <text-property name="heading">numero</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">vigencia</property>
-                    <property name="analysis">measure</property>
-                    <text-property name="displayName">vigencia</text-property>
-                    <text-property name="heading">vigencia</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">objeto</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">objeto</text-property>
-                    <text-property name="heading">objeto</text-property>
-                </structure>
-            </list-property>
-            <list-property name="parameters">
-                <structure>
-                    <property name="name">numero_necesidad</property>
-                    <property name="paramName">numero_necesidad</property>
-                    <property name="nativeName"></property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
-                    <property name="position">1</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
-                </structure>
-            </list-property>
-            <structure name="cachedMetaData">
-                <list-property name="resultSet">
-                    <structure>
-                        <property name="position">1</property>
-                        <property name="name">numero</property>
-                        <property name="dataType">integer</property>
-                    </structure>
-                    <structure>
-                        <property name="position">2</property>
-                        <property name="name">vigencia</property>
-                        <property name="dataType">decimal</property>
-                    </structure>
-                    <structure>
-                        <property name="position">3</property>
-                        <property name="name">objeto</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                </list-property>
-            </structure>
-            <property name="dataSource">Dsource_159</property>
-            <list-property name="resultSet">
-                <structure>
-                    <property name="position">1</property>
-                    <property name="name">numero</property>
-                    <property name="nativeName">numero</property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
-                </structure>
-                <structure>
-                    <property name="position">2</property>
-                    <property name="name">vigencia</property>
-                    <property name="nativeName">vigencia</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">2</property>
-                </structure>
-                <structure>
-                    <property name="position">3</property>
-                    <property name="name">objeto</property>
-                    <property name="nativeName">objeto</property>
-                    <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
-                </structure>
-            </list-property>
-            <xml-property name="queryText"><![CDATA[select numero, vigencia, objeto
-from administrativa.necesidad
-where numero = ?;]]></xml-property>
-        </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Dset_entidad" id="57">
             <list-property name="columnHints">
                 <structure>
@@ -763,6 +719,18 @@ FROM financiera.fuente_financiamiento;]]></xml-property>
                     <text-property name="displayName">numero_disponibilidad</text-property>
                     <text-property name="heading">numero_disponibilidad</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">nombre_fuente</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">nombre_fuente</text-property>
+                    <text-property name="heading">nombre_fuente</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">codigo_fuente</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">codigo_fuente</text-property>
+                    <text-property name="heading">codigo_fuente</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters">
                 <structure>
@@ -829,6 +797,16 @@ FROM financiera.fuente_financiamiento;]]></xml-property>
                         <property name="name">numero_disponibilidad</property>
                         <property name="dataType">decimal</property>
                     </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">nombre_fuente</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">codigo_fuente</property>
+                        <property name="dataType">string</property>
+                    </structure>
                 </list-property>
             </structure>
             <property name="dataSource">Dsource_159</property>
@@ -861,8 +839,24 @@ FROM financiera.fuente_financiamiento;]]></xml-property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">2</property>
                 </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">nombre_fuente</property>
+                    <property name="nativeName">nombre_fuente</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">codigo_fuente</property>
+                    <property name="nativeName">codigo_fuente</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT rub.codigo, rub.nombre, diapr.valor, dis.numero_disponibilidad
+            <xml-property name="queryText"><![CDATA[SELECT rub.codigo, rub.nombre, 
+diapr.valor, dis.numero_disponibilidad, fue.nombre AS nombre_fuente, 
+fue.codigo AS codigo_fuente
 FROM financiera.disponibilidad dis 
 INNER JOIN financiera.disponibilidad_apropiacion diapr 
 ON dis.id = diapr.disponibilidad
@@ -870,10 +864,14 @@ INNER JOIN financiera.apropiacion apr
 ON diapr.apropiacion = apr.id
 INNER JOIN financiera.rubro rub 
 ON rub.id = apr.rubro
+INNER JOIN financiera.disponibilidad_proceso_externo dispe
+ON dispe.disponibilidad = dis.id
+INNER JOIN financiera.fuente_financiamiento fue
+ON fue.id = diapr.fuente_financiamiento
 WHERE dis.vigencia = ? 
 AND diapr.fuente_financiamiento = ?
 AND rub.unidad_ejecutora = ?
-AND dis.solicitud = ? ]]></xml-property>
+AND dispe.proceso_externo = ? ]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -1041,6 +1039,24 @@ AND dis.solicitud = ? ]]></xml-property>
                     <text-property name="displayName">objeto</text-property>
                     <text-property name="heading">objeto</text-property>
                 </structure>
+                <structure>
+                    <property name="columnName">numero</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">numero</text-property>
+                    <text-property name="heading">numero</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">vigencia</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">vigencia</text-property>
+                    <text-property name="heading">vigencia</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">jefe_dependencia_solicitante</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">jefe_dependencia_solicitante</text-property>
+                    <text-property name="heading">jefe_dependencia_solicitante</text-property>
+                </structure>
             </list-property>
             <list-property name="parameters">
                 <structure>
@@ -1061,6 +1077,21 @@ AND dis.solicitud = ? ]]></xml-property>
                         <property name="name">objeto</property>
                         <property name="dataType">string</property>
                     </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">numero</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">vigencia</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">jefe_dependencia_solicitante</property>
+                        <property name="dataType">integer</property>
+                    </structure>
                 </list-property>
             </structure>
             <property name="dataSource">Dsource_159</property>
@@ -1072,32 +1103,38 @@ AND dis.solicitud = ? ]]></xml-property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">numero</property>
+                    <property name="nativeName">numero</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">vigencia</property>
+                    <property name="nativeName">vigencia</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">jefe_dependencia_solicitante</property>
+                    <property name="nativeName">jefe_dependencia_solicitante</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
             </list-property>
-            <xml-property name="queryText"><![CDATA[SELECT nec.objeto
-FROM administrativa.solicitud_disponibilidad soldis
-INNER JOIN administrativa.necesidad nec
-ON soldis.necesidad = nec.id
-WHERE soldis.id = ?;]]></xml-property>
+            <xml-property name="queryText"><![CDATA[SELECT nec.objeto, nec.numero, nec.vigencia, dpnec.jefe_dependencia_solicitante
+FROM administrativa.necesidad nec 
+INNER JOIN administrativa.dependencia_necesidad dpnec 
+ON nec.id = dpnec.necesidad
+INNER JOIN administrativa.solicitud_disponibilidad soldis
+ON nec.id = soldis.necesidad
+AND soldis.id = ?;]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
-  <DataSetParameters>
-    <parameter>
-      <design:ParameterDefinition>
-        <design:inOutMode>In</design:inOutMode>
-        <design:attributes>
-          <design:identifier>
-            <design:name></design:name>
-            <design:position>1</design:position>
-          </design:identifier>
-          <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
-          <design:precision>0</design:precision>
-          <design:scale>0</design:scale>
-          <design:nullability>Unknown</design:nullability>
-        </design:attributes>
-      </design:ParameterDefinition>
-    </parameter>
-  </DataSetParameters>
   <design:ResultSets derivedMetaData="true">
     <design:resultSetDefinitions>
       <design:resultSetColumns>
@@ -1128,6 +1165,1096 @@ WHERE soldis.id = ?;]]></xml-property>
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Dset_dependencia" id="131">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">nombre</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">nombre</text-property>
+                    <text-property name="heading">nombre</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">nombre</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Dsource_159</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">nombre</property>
+                    <property name="nativeName">nombre</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT id,nombre FROM oikos.dependencia;]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>numero</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>numero</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>numero</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>vigencia</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>vigencia</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>vigencia</design:label>
+            <design:formattingHints>
+              <design:displaySize>5</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>objeto</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>700</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>objeto</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>objeto</design:label>
+            <design:formattingHints>
+              <design:displaySize>700</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>fecha_inicio</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>13</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>fecha_inicio</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>fecha_inicio</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>fecha_fin</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>13</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>fecha_fin</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>fecha_fin</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>tercero_id</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>tercero_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>tercero_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>dependencia_id</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>dependencia_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>dependencia_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>acta_aprobacion</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>acta_aprobacion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>acta_aprobacion</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Dset_jefe_dependencia" id="133">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">tercero_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">tercero_id</text-property>
+                    <text-property name="heading">tercero_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">dependencia_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">dependencia_id</text-property>
+                    <text-property name="heading">dependencia_id</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">tercero_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">dependencia_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Dsource_159</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">tercero_id</property>
+                    <property name="nativeName">tercero_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">dependencia_id</property>
+                    <property name="nativeName">dependencia_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT id, tercero_id, dependencia_id
+FROM core.jefe_dependencia;]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>fecha_inicio</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>13</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>fecha_inicio</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>fecha_inicio</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>fecha_fin</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>91</design:nativeDataTypeCode>
+            <design:precision>13</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>fecha_fin</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>fecha_fin</design:label>
+            <design:formattingHints>
+              <design:displaySize>13</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>tercero_id</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>tercero_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>tercero_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>dependencia_id</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>dependencia_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>dependencia_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>acta_aprobacion</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>acta_aprobacion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>acta_aprobacion</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <joint-data-set name="DsetJoin_solicitud_disponibilidad_jefe" id="134">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Dset_solicitud_disponibilidad::vigencia</property>
+                    <property name="alias">vigencia</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Dset_solicitud_disponibilidad::vigencia</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_solicitud_disponibilidad::jefe_dependencia_solicitante</property>
+                    <property name="alias">jefe_dependencia_solicitante</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Dset_solicitud_disponibilidad::jefe_dependencia_solicitante</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_jefe_dependencia::tercero_id</property>
+                    <property name="alias">tercero_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Dset_jefe_dependencia::tercero_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_solicitud_disponibilidad::numero</property>
+                    <property name="alias">numero</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Dset_solicitud_disponibilidad::numero</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_solicitud_disponibilidad::objeto</property>
+                    <property name="alias">objeto</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Dset_solicitud_disponibilidad::objeto</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_jefe_dependencia::id</property>
+                    <property name="alias">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Dset_jefe_dependencia::id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_jefe_dependencia::dependencia_id</property>
+                    <property name="alias">Dset_jefe_dependencia::dependencia_id</property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Dset_solicitud_disponibilidad::solicitud</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">0</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">objeto</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">numero</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">vigencia</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">jefe_dependencia_solicitante</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">tercero_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">Dset_jefe_dependencia::dependencia_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <simple-property-list name="dataSets">
+                <value>Dset_solicitud_disponibilidad</value>
+                <value>Dset_jefe_dependencia</value>
+            </simple-property-list>
+            <list-property name="joinConditions">
+                <structure>
+                    <property name="joinType">inner</property>
+                    <property name="joinOperator">eq</property>
+                    <property name="leftDataSet">Dset_solicitud_disponibilidad</property>
+                    <property name="rightDataSet">Dset_jefe_dependencia</property>
+                    <expression name="leftExpression">dataSetRow["jefe_dependencia_solicitante"]</expression>
+                    <expression name="rightExpression">dataSetRow["id"]</expression>
+                </structure>
+            </list-property>
+        </joint-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Dset_proveedores" id="136">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id_proveedor</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id_proveedor</text-property>
+                    <text-property name="heading">id_proveedor</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">nom_proveedor</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">nom_proveedor</text-property>
+                    <text-property name="heading">nom_proveedor</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id_proveedor</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">nom_proveedor</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Dsource_pruebas_nube</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id_proveedor</property>
+                    <property name="nativeName">id_proveedor</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">nom_proveedor</property>
+                    <property name="nativeName">nom_proveedor</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT id_proveedor, nom_proveedor 
+FROM agora.informacion_proveedor 
+WHERE tipopersona = 'NATURAL' 
+AND nom_proveedor != ''; ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id_proveedor</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id_proveedor</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id_proveedor</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>nom_asesor</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>nom_asesor</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>nom_asesor</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <joint-data-set name="DsetJoin_jefe_proveedor" id="137">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Dset_proveedores::id_proveedor</property>
+                    <property name="alias">id_proveedor</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Dset_proveedores::id_proveedor</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_proveedores::nom_proveedor</property>
+                    <property name="alias">nom_proveedor</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Dset_proveedores::nom_proveedor</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::numero</property>
+                    <property name="alias">Dset_solicitud_disponibilidad::numero</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::numero</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::vigencia</property>
+                    <property name="alias">Dset_solicitud_disponibilidad::vigencia</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::vigencia</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::objeto</property>
+                    <property name="alias">Dset_solicitud_disponibilidad::objeto</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::objeto</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_jefe_dependencia::tercero_id</property>
+                    <property name="alias">Dset_jefe_dependencia::tercero_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_jefe_dependencia::tercero_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::jefe_dependencia_solicitante</property>
+                    <property name="alias">Dset_solicitud_disponibilidad::jefe_dependencia_solicitante</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::jefe_dependencia_solicitante</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_jefe_dependencia::id</property>
+                    <property name="alias">Dset_jefe_dependencia::id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_jefe_dependencia::id</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::solicitud</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">0</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Dset_solicitud_disponibilidad::objeto</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Dset_solicitud_disponibilidad::numero</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Dset_solicitud_disponibilidad::vigencia</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Dset_solicitud_disponibilidad::jefe_dependencia_solicitante</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">Dset_jefe_dependencia::id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Dset_jefe_dependencia::tercero_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">id_proveedor</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">nom_proveedor</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <simple-property-list name="dataSets">
+                <value>DsetJoin_solicitud_disponibilidad_jefe</value>
+                <value>Dset_proveedores</value>
+            </simple-property-list>
+            <list-property name="joinConditions">
+                <structure>
+                    <property name="joinType">inner</property>
+                    <property name="joinOperator">eq</property>
+                    <property name="leftDataSet">DsetJoin_solicitud_disponibilidad_jefe</property>
+                    <property name="rightDataSet">Dset_proveedores</property>
+                    <expression name="leftExpression">dataSetRow["tercero_id"]</expression>
+                    <expression name="rightExpression">dataSetRow["id_proveedor"]</expression>
+                </structure>
+            </list-property>
+        </joint-data-set>
+        <joint-data-set name="DsetJoin_info_dependencia" id="139">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::numero</property>
+                    <property name="alias">Dset_solicitud_disponibilidad::numero</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::numero</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_jefe_dependencia::dependencia_id</property>
+                    <property name="alias">Dset_jefe_dependencia::dependencia_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_jefe_dependencia::dependencia_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::vigencia</property>
+                    <property name="alias">Dset_solicitud_disponibilidad::vigencia</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::vigencia</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::objeto</property>
+                    <property name="alias">Dset_solicitud_disponibilidad::objeto</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::objeto</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_jefe_dependencia::tercero_id</property>
+                    <property name="alias">Dset_jefe_dependencia::tercero_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_jefe_dependencia::tercero_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::jefe_dependencia_solicitante</property>
+                    <property name="alias">Dset_solicitud_disponibilidad::jefe_dependencia_solicitante</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::jefe_dependencia_solicitante</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_dependencia::id</property>
+                    <property name="alias">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Dset_dependencia::id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_dependencia::nombre</property>
+                    <property name="alias">nombre</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Dset_dependencia::nombre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DsetJoin_solicitud_disponibilidad_jefe::Dset_jefe_dependencia::id</property>
+                    <property name="alias">Dset_jefe_dependencia::id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">DsetJoin_solicitud_disponibilidad_jefe::Dset_jefe_dependencia::id</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">DsetJoin_solicitud_disponibilidad_jefe::Dset_solicitud_disponibilidad::solicitud</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">0</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Dset_solicitud_disponibilidad::objeto</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Dset_solicitud_disponibilidad::numero</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Dset_solicitud_disponibilidad::vigencia</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">Dset_solicitud_disponibilidad::jefe_dependencia_solicitante</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">Dset_jefe_dependencia::id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">Dset_jefe_dependencia::tercero_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">Dset_jefe_dependencia::dependencia_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">nombre</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <simple-property-list name="dataSets">
+                <value>DsetJoin_solicitud_disponibilidad_jefe</value>
+                <value>Dset_dependencia</value>
+            </simple-property-list>
+            <list-property name="joinConditions">
+                <structure>
+                    <property name="joinType">inner</property>
+                    <property name="joinOperator">eq</property>
+                    <property name="leftDataSet">DsetJoin_solicitud_disponibilidad_jefe</property>
+                    <property name="rightDataSet">Dset_dependencia</property>
+                    <expression name="leftExpression">dataSetRow["Dset_jefe_dependencia::dependencia_id"]</expression>
+                    <expression name="rightExpression">dataSetRow["id"]</expression>
+                </structure>
+            </list-property>
+        </joint-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Dset_jefe_presupuesto" id="154">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">nombre</property>
+                    <text-property name="displayName">nombre</text-property>
+                    <text-property name="heading">nombre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">tercero_id</property>
+                    <text-property name="displayName">tercero_id</text-property>
+                    <text-property name="heading">tercero_id</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">nombre</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">tercero_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Dsource_159</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">nombre</property>
+                    <property name="nativeName">nombre</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">tercero_id</property>
+                    <property name="nativeName">tercero_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT dep.nombre, jef.tercero_id
+FROM oikos.dependencia dep,
+core.jefe_dependencia jef
+WHERE nombre LIKE '%PRESUPUESTO%'
+AND jef.dependencia_id = dep.id;]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>nombre</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>nombre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>nombre</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>tercero_id</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>tercero_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>tercero_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <joint-data-set name="DsetJoin_jefe_presupuesto_proveedor" id="155">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Dset_proveedores::id_proveedor</property>
+                    <property name="alias">id_proveedor</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Dset_proveedores::id_proveedor</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_proveedores::nom_proveedor</property>
+                    <property name="alias">nom_proveedor</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Dset_proveedores::nom_proveedor</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_jefe_presupuesto::tercero_id</property>
+                    <property name="alias">tercero_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Dset_jefe_presupuesto::tercero_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Dset_jefe_presupuesto::nombre</property>
+                    <property name="alias">nombre</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Dset_jefe_presupuesto::nombre</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">nombre</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">tercero_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">id_proveedor</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">nom_proveedor</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <simple-property-list name="dataSets">
+                <value>Dset_jefe_presupuesto</value>
+                <value>Dset_proveedores</value>
+            </simple-property-list>
+            <list-property name="joinConditions">
+                <structure>
+                    <property name="joinType">inner</property>
+                    <property name="joinOperator">eq</property>
+                    <property name="leftDataSet">Dset_jefe_presupuesto</property>
+                    <property name="rightDataSet">Dset_proveedores</property>
+                    <expression name="leftExpression">dataSetRow["tercero_id"]</expression>
+                    <expression name="rightExpression">dataSetRow["id_proveedor"]</expression>
+                </structure>
+            </list-property>
+        </joint-data-set>
     </data-sets>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
@@ -1245,17 +2372,38 @@ WHERE soldis.id = ?;]]></xml-property>
         <label id="113">
             <text-property name="text"> </text-property>
         </label>
+        <data id="149">
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">right</property>
+            <property name="dataSet">Dset_disponibilidad</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">nombre_fuente</property>
+                    <text-property name="displayName">nombre_fuente</text-property>
+                    <expression name="expression" type="javascript">"Fuente de financiamiento: "+ dataSetRow["nombre_fuente"]+" Código: "+dataSetRow["codigo_fuente"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">nombre_fuente</property>
+        </data>
+        <label id="150">
+            <text-property name="text"> </text-property>
+        </label>
         <data id="118">
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">vigencia_disponibilidad</property>
-                    <expression name="expression" type="javascript">"Que el presupuesto de gastos e inversiones de la vigencia "+params["vigencia_disponibilidad"]+" existe apropiación disponible para la presewnte solicitud así:"</expression>
+                    <expression name="expression" type="javascript">"Que el presupuesto de gastos e inversiones de la vigencia "+params["vigencia_disponibilidad"]+" existe apropiación disponible para la presente solicitud así:"</expression>
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
             </list-property>
             <property name="resultSetColumn">vigencia_disponibilidad</property>
         </data>
+        <label id="148">
+            <text-property name="text"> </text-property>
+        </label>
         <table id="90">
             <property name="dataSet">Dset_disponibilidad</property>
             <list-property name="boundDataColumns">
@@ -1407,6 +2555,90 @@ WHERE soldis.id = ?;]]></xml-property>
                 </structure>
             </list-property>
             <property name="resultSetColumn">objeto</property>
+        </data>
+        <label id="130">
+            <text-property name="text"> </text-property>
+        </label>
+        <data id="138">
+            <property name="display">inline</property>
+            <property name="dataSet">DsetJoin_jefe_proveedor</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">nom_asesor</property>
+                    <text-property name="displayName">Dset_proveedores::nom_asesor</text-property>
+                    <expression name="expression" type="javascript">"Se expide a solicitud de "+dataSetRow["nom_proveedor"]+", "</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">nom_asesor</property>
+        </data>
+        <data id="144">
+            <property name="display">inline</property>
+            <property name="dataSet">DsetJoin_info_dependencia</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">nombre</property>
+                    <text-property name="displayName">Dset_dependencia::nombre</text-property>
+                    <expression name="expression" type="javascript">" "+dataSetRow["nombre"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">nombre</property>
+        </data>
+        <label id="146">
+            <text-property name="text"> </text-property>
+        </label>
+        <text-data id="145">
+            <expression name="valueExpr">"Bogotá D.C.  "+ new Date().toLocaleDateString();</expression>
+            <property name="contentType">html</property>
+        </text-data>
+        <label id="147">
+            <text-property name="text"> </text-property>
+        </label>
+        <label id="152"/>
+        <label id="153">
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">__________________________________________________</text-property>
+        </label>
+        <data id="156">
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <property name="dataSet">DsetJoin_jefe_presupuesto_proveedor</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">nom_proveedor</property>
+                    <text-property name="displayName">Dset_proveedores::nom_proveedor</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["nom_proveedor"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">nom_proveedor</property>
+        </data>
+        <label id="157">
+            <property name="textAlign">center</property>
+            <text-property name="text">RESPONSABLE DEL PRESUPUESTO</text-property>
+        </label>
+        <label id="158"/>
+        <label id="159">
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">__________________________________________________</text-property>
+        </label>
+        <data id="163">
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">UsuarioElaboro</property>
+                    <expression name="expression" type="javascript">"ELABORÓ "+params["UsuarioElaboro"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">UsuarioElaboro</property>
         </data>
     </body>
 </report>
