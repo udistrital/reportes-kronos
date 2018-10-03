@@ -2258,11 +2258,89 @@ AND jef.dependencia_id = dep.id;]]></xml-property>
     </data-sets>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
+            <property name="showFooterOnLast">true</property>
+            <property name="footerHeight">2.2in</property>
             <page-footer>
-                <text id="3">
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
-                </text>
+                <grid id="176">
+                    <column id="177"/>
+                    <row id="178">
+                        <cell id="179">
+                            <label id="192">
+                                <property name="fontWeight">bold</property>
+                                <property name="textAlign">center</property>
+                                <text-property name="text">__________________________________________________</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                    <row id="180">
+                        <cell id="181">
+                            <data id="193">
+                                <property name="fontWeight">bold</property>
+                                <property name="textAlign">center</property>
+                                <property name="dataSet">DsetJoin_jefe_presupuesto_proveedor</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">nom_proveedor</property>
+                                        <text-property name="displayName">Dset_proveedores::nom_proveedor</text-property>
+                                        <expression name="expression" type="javascript">dataSetRow["nom_proveedor"]</expression>
+                                        <property name="dataType">string</property>
+                                    </structure>
+                                </list-property>
+                                <property name="resultSetColumn">nom_proveedor</property>
+                            </data>
+                        </cell>
+                    </row>
+                    <row id="182">
+                        <cell id="183">
+                            <label id="194">
+                                <property name="textAlign">center</property>
+                                <text-property name="text">RESPONSABLE DEL PRESUPUESTO</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                    <row id="184">
+                        <cell id="185">
+                            <label id="197">
+                                <text-property name="text"> </text-property>
+                            </label>
+                        </cell>
+                    </row>
+                    <row id="186">
+                        <cell id="187">
+                            <label id="195">
+                                <property name="fontWeight">bold</property>
+                                <property name="textAlign">center</property>
+                                <text-property name="text">__________________________________________________</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                    <row id="188">
+                        <cell id="189">
+                            <label id="198">
+                                <property name="fontWeight">bold</property>
+                                <property name="textAlign">center</property>
+                                <text-property name="text">ELABORÓ </text-property>
+                            </label>
+                        </cell>
+                    </row>
+                    <row id="190">
+                        <cell id="191">
+                            <data id="196">
+                                <property name="fontWeight">normal</property>
+                                <property name="textAlign">center</property>
+                                <list-property name="boundDataColumns">
+                                    <structure>
+                                        <property name="name">UsuarioElaboro</property>
+                                        <expression name="expression" type="javascript">params["UsuarioElaboro"]</expression>
+                                        <property name="dataType">string</property>
+                                        <property name="allowExport">true</property>
+                                    </structure>
+                                </list-property>
+                                <property name="resultSetColumn">UsuarioElaboro</property>
+                            </data>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
@@ -2598,47 +2676,5 @@ AND jef.dependencia_id = dep.id;]]></xml-property>
             <text-property name="text"> </text-property>
         </label>
         <label id="152"/>
-        <label id="153">
-            <property name="fontWeight">bold</property>
-            <property name="textAlign">center</property>
-            <text-property name="text">__________________________________________________</text-property>
-        </label>
-        <data id="156">
-            <property name="fontWeight">bold</property>
-            <property name="textAlign">center</property>
-            <property name="dataSet">DsetJoin_jefe_presupuesto_proveedor</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">nom_proveedor</property>
-                    <text-property name="displayName">Dset_proveedores::nom_proveedor</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["nom_proveedor"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-            </list-property>
-            <property name="resultSetColumn">nom_proveedor</property>
-        </data>
-        <label id="157">
-            <property name="textAlign">center</property>
-            <text-property name="text">RESPONSABLE DEL PRESUPUESTO</text-property>
-        </label>
-        <label id="158"/>
-        <label id="159">
-            <property name="fontWeight">bold</property>
-            <property name="textAlign">center</property>
-            <text-property name="text">__________________________________________________</text-property>
-        </label>
-        <data id="163">
-            <property name="fontWeight">bold</property>
-            <property name="textAlign">center</property>
-            <list-property name="boundDataColumns">
-                <structure>
-                    <property name="name">UsuarioElaboro</property>
-                    <expression name="expression" type="javascript">"ELABORÓ "+params["UsuarioElaboro"]</expression>
-                    <property name="dataType">string</property>
-                    <property name="allowExport">true</property>
-                </structure>
-            </list-property>
-            <property name="resultSetColumn">UsuarioElaboro</property>
-        </data>
     </body>
 </report>
