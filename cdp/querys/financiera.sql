@@ -1,3 +1,6 @@
+
+SELECT * FROM financiera.disponibilidad;
+/*
 SELECT rub.codigo, rub.nombre, 
 diapr.valor, dis.numero_disponibilidad, diapr.fuente_financiamiento
 FROM financiera.disponibilidad dis 
@@ -15,9 +18,6 @@ WHERE dis.vigencia = 2018
 AND diapr.fuente_financiamiento = 98
 AND rub.unidad_ejecutora = 1
 AND dispe.proceso_externo = 12;
-
-
-/*
 
 SELECT * FROM financiera.disponibilidad_proceso_externo WHERE proceso_externo = 12;
 SELECT * FROM financiera.disponibilidad WHERE id = 101348;
