@@ -9,13 +9,13 @@
     <property name="imageDPI">72</property>
     <parameters>
         <scalar-parameter name="solicitud" id="6">
-            <text-property name="promptText">Número de la Necesidad</text-property>
+            <text-property name="promptText">Número de Solicitud Necesidad</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
             <property name="dataType">integer</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">0</value>
+                <value type="constant">12</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -2464,7 +2464,7 @@ AND jef.dependencia_id = dep.id;]]></xml-property>
             <text-property name="text"> </text-property>
         </label>
         <table id="90">
-            <property name="width">6.472222222222222in</property>
+            <property name="width">6.514in</property>
             <property name="dataSet">Dset_disponibilidad</property>
             <list-property name="boundDataColumns">
                 <structure>
