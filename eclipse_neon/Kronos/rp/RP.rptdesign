@@ -112,7 +112,6 @@
             <encrypted-property name="odaPassword" encryptionID="base64">cGFzc3dvcmQ=</encrypted-property>
         </oda-data-source>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Dsource_pruebas_nube" id="303">
-            <text-property name="displayName"></text-property>
             <list-property name="privateDriverProperties">
                 <ex-property>
                     <name>metadataBidiFormatStr</name>
@@ -511,6 +510,7 @@ FROM financiera.registro_presupuestal;]]></xml-property>
                 </structure>
                 <structure>
                     <property name="columnName">beneficiario</property>
+                    <property name="analysis">measure</property>
                     <text-property name="displayName">beneficiario</text-property>
                     <text-property name="heading">beneficiario</text-property>
                 </structure>
@@ -1136,8 +1136,9 @@ AND rp.numero_registro_presupuestal = ?]]></xml-property>
                 <structure>
                     <property name="name">codigo</property>
                     <text-property name="displayName">codigo</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["codigo"]</expression>
+                    <expression name="expression" type="javascript">dataSetRow["codigo"]+" - "+dataSetRow["nombre"]</expression>
                     <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">valor</property>
@@ -1317,83 +1318,58 @@ AND rp.numero_registro_presupuestal = ?]]></xml-property>
                         </list-property>
                         <property name="resultSetColumn">numero_disponibilidad</property>
                     </data>
-                    <label id="294">
-                        <property name="fontWeight">bold</property>
-                        <property name="display">inline</property>
-                        <text-property name="text">Número de Compromiso: </text-property>
-                    </label>
                     <data id="296">
-                        <property name="display">inline</property>
+                        <property name="display">block</property>
                         <property name="dataSet">Dset_registro_presupuestal</property>
                         <list-property name="boundDataColumns">
                             <structure>
                                 <property name="name">numero_compromiso</property>
                                 <text-property name="displayName">numero_compromiso</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["numero_compromiso"]</expression>
-                                <property name="dataType">integer</property>
+                                <expression name="expression" type="javascript">"NÚMERO DE COMPROMISO: "+dataSetRow["numero_compromiso"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
                             </structure>
                         </list-property>
                         <property name="resultSetColumn">numero_compromiso</property>
                     </data>
-                    <label id="295">
-                        <text-property name="text"></text-property>
-                    </label>
-                    <label id="292">
-                        <property name="fontWeight">bold</property>
-                        <property name="display">inline</property>
-                        <text-property name="text">Tipo de Compromiso: </text-property>
-                    </label>
                     <data id="293">
-                        <property name="display">inline</property>
+                        <property name="display">block</property>
                         <property name="dataSet">Dset_registro_presupuestal</property>
                         <list-property name="boundDataColumns">
                             <structure>
                                 <property name="name">tipo_compromiso</property>
                                 <text-property name="displayName">tipo_compromiso</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["tipo_compromiso"]</expression>
+                                <expression name="expression" type="javascript">"TIPO DE COMPROMISO: "+dataSetRow["tipo_compromiso"]</expression>
                                 <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
                             </structure>
                         </list-property>
                         <property name="resultSetColumn">tipo_compromiso</property>
                     </data>
-                    <label id="299">
-                        <text-property name="text"></text-property>
-                    </label>
-                    <label id="297">
-                        <property name="fontWeight">bold</property>
-                        <property name="display">inline</property>
-                        <text-property name="text">Modalidad de Selección: </text-property>
-                    </label>
                     <data id="300">
-                        <property name="display">inline</property>
+                        <property name="display">block</property>
                         <property name="dataSet">Dset_solicitud_disponibilidad</property>
                         <list-property name="boundDataColumns">
                             <structure>
                                 <property name="name">nombre_modalidad</property>
                                 <text-property name="displayName">nombre_modalidad</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["nombre_modalidad"]</expression>
+                                <expression name="expression" type="javascript">"MODALIDAD DE SELECCIÓN: "+dataSetRow["nombre_modalidad"]</expression>
                                 <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
                             </structure>
                         </list-property>
                         <property name="resultSetColumn">nombre_modalidad</property>
                     </data>
-                    <label id="302">
-                        <text-property name="text"> </text-property>
-                    </label>
-                    <label id="301">
-                        <property name="fontWeight">bold</property>
-                        <property name="display">inline</property>
-                        <text-property name="text">Beneficiario: </text-property>
-                    </label>
                     <data id="304">
-                        <property name="display">inline</property>
+                        <property name="display">block</property>
                         <property name="dataSet">Dset_registro_presupuestal</property>
                         <list-property name="boundDataColumns">
                             <structure>
                                 <property name="name">beneficiario</property>
                                 <text-property name="displayName">beneficiario</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["beneficiario"]</expression>
-                                <property name="dataType">integer</property>
+                                <expression name="expression" type="javascript">"BENEFICIARIO: "+dataSetRow["beneficiario"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
                             </structure>
                         </list-property>
                         <property name="resultSetColumn">beneficiario</property>
