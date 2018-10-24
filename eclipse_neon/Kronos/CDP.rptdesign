@@ -2775,7 +2775,9 @@ AND jef.dependencia_id = dep.id;]]></xml-property>
                             <structure>
                                 <property name="name">objeto</property>
                                 <text-property name="displayName">objeto</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["objeto"].toUpperCase()</expression>
+                                <expression name="expression" type="javascript">if (dataSetRow["objeto"] != null) {
+dataSetRow["objeto"].toUpperCase()
+}</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
