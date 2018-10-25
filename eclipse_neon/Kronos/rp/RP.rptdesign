@@ -473,6 +473,7 @@ FROM financiera.registro_presupuestal;]]></xml-property>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Dset_registro_presupuestal" id="87">
+            <property name="nullsOrdering">nulls lowest</property>
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">codigo</property>
@@ -497,6 +498,18 @@ FROM financiera.registro_presupuestal;]]></xml-property>
                     <property name="analysis">measure</property>
                     <text-property name="displayName">numero_registro_presupuestal</text-property>
                     <text-property name="heading">numero_registro_presupuestal</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">saldo_cdp</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">saldo_cdp</text-property>
+                    <text-property name="heading">saldo_cdp</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">saldo_rp</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">saldo_rp</text-property>
+                    <text-property name="heading">saldo_rp</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">numero_disponibilidad</property>
@@ -598,36 +611,46 @@ FROM financiera.registro_presupuestal;]]></xml-property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
-                        <property name="name">numero_disponibilidad</property>
+                        <property name="name">saldo_cdp</property>
                         <property name="dataType">decimal</property>
                     </structure>
                     <structure>
                         <property name="position">6</property>
+                        <property name="name">saldo_rp</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">numero_disponibilidad</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
                         <property name="name">solicitud</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">7</property>
+                        <property name="position">9</property>
                         <property name="name">tipo_compromiso</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">8</property>
+                        <property name="position">10</property>
                         <property name="name">numero_compromiso</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">9</property>
+                        <property name="position">11</property>
                         <property name="name">beneficiario</property>
                         <property name="dataType">integer</property>
                     </structure>
                     <structure>
-                        <property name="position">10</property>
+                        <property name="position">12</property>
                         <property name="name">fuente_nombre</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">11</property>
+                        <property name="position">13</property>
                         <property name="name">fuente_codigo</property>
                         <property name="dataType">string</property>
                     </structure>
@@ -665,48 +688,62 @@ FROM financiera.registro_presupuestal;]]></xml-property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
+                    <property name="name">saldo_cdp</property>
+                    <property name="nativeName">saldo_cdp</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">saldo_rp</property>
+                    <property name="nativeName">saldo_rp</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
                     <property name="name">numero_disponibilidad</property>
                     <property name="nativeName">numero_disponibilidad</property>
                     <property name="dataType">decimal</property>
                     <property name="nativeDataType">2</property>
                 </structure>
                 <structure>
-                    <property name="position">6</property>
+                    <property name="position">8</property>
                     <property name="name">solicitud</property>
                     <property name="nativeName">solicitud</property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">7</property>
+                    <property name="position">9</property>
                     <property name="name">tipo_compromiso</property>
                     <property name="nativeName">tipo_compromiso</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">8</property>
+                    <property name="position">10</property>
                     <property name="name">numero_compromiso</property>
                     <property name="nativeName">numero_compromiso</property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">9</property>
+                    <property name="position">11</property>
                     <property name="name">beneficiario</property>
                     <property name="nativeName">beneficiario</property>
                     <property name="dataType">integer</property>
                     <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
-                    <property name="position">10</property>
+                    <property name="position">12</property>
                     <property name="name">fuente_nombre</property>
                     <property name="nativeName">fuente_nombre</property>
                     <property name="dataType">string</property>
                     <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">11</property>
+                    <property name="position">13</property>
                     <property name="name">fuente_codigo</property>
                     <property name="nativeName">fuente_codigo</property>
                     <property name="dataType">string</property>
@@ -714,6 +751,8 @@ FROM financiera.registro_presupuestal;]]></xml-property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT rub.codigo, rub.nombre, rpdis.valor, rp.numero_registro_presupuestal, 
+(SUM(disapr.valor) - SUM(rpdis.valor)) SALDO_CDP, 
+(SUM(rpdis.valor) - SUM(op.valor_base)) SALDO_RP, 
 dis.numero_disponibilidad, dis.solicitud, tcfi.nombre tipo_compromiso, 
 rp.numero_compromiso, rp.beneficiario, fue.nombre fuente_nombre, 
 fue.codigo fuente_codigo
@@ -737,9 +776,19 @@ INNER JOIN financiera.apropiacion apr
 ON apr.id = disapr.apropiacion
 INNER JOIN financiera.rubro rub
 ON rub.id = apr.rubro
+LEFT OUTER JOIN financiera.orden_pago_registro_presupuestal oprp
+ON oprp.registro_presupuestal = rp.id
+LEFT OUTER JOIN financiera.orden_pago op
+ON op.id = oprp.orden_pago
+
 WHERE rp.vigencia = ?
 AND rub.unidad_ejecutora = ?
-AND rp.numero_registro_presupuestal = ?]]></xml-property>
+AND rp.numero_registro_presupuestal = ?
+
+GROUP BY rub.codigo, rub.nombre, rpdis.valor, rp.numero_registro_presupuestal, 
+dis.numero_disponibilidad, dis.solicitud, tcfi.nombre , 
+rp.numero_compromiso, rp.beneficiario, fue.nombre , 
+fue.codigo ;]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -1771,6 +1820,17 @@ AND jef.dependencia_id = dep.id;]]></xml-property>
                     <property name="dataType">decimal</property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">saldo_rp</property>
+                    <text-property name="displayName">saldo_rp</text-property>
+                    <expression name="expression" type="javascript">if (dataSetRow["saldo_rp"] == null) {
+Total.sum(row["valor"])
+} else {
+dataSetRow["saldo_rp"]
+}</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="284">
                 <property name="width">4.5in</property>
@@ -1856,13 +1916,20 @@ AND jef.dependencia_id = dep.id;]]></xml-property>
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="289">
-                            <text-property name="text"> </text-property>
-                        </label>
                         <label id="286">
                             <property name="fontWeight">bold</property>
                             <property name="textAlign">right</property>
                             <text-property name="text">Total</text-property>
+                        </label>
+                        <label id="344">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Saldo CRP</text-property>
+                        </label>
+                        <label id="341">
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Saldo CDP</text-property>
                         </label>
                     </cell>
                     <cell id="283">
@@ -1874,9 +1941,6 @@ AND jef.dependencia_id = dep.id;]]></xml-property>
                         <property name="borderRightWidth">thin</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <label id="288">
-                            <text-property name="text"> </text-property>
-                        </label>
                         <data id="287">
                             <property name="fontWeight">bold</property>
                             <structure name="numberFormat">
@@ -1886,14 +1950,39 @@ AND jef.dependencia_id = dep.id;]]></xml-property>
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">Column Binding</property>
                         </data>
+                        <data id="345">
+                            <property name="fontWeight">bold</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">saldo_rp</property>
+                        </data>
+                        <data id="340">
+                            <property name="fontWeight">bold</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="dataSet">Dset_registro_presupuestal</property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">saldo_cdp</property>
+                                    <text-property name="displayName">saldo_cdp</text-property>
+                                    <expression name="expression" type="javascript">dataSetRow["saldo_cdp"] == null</expression>
+                                    <property name="dataType">decimal</property>
+                                    <property name="allowExport">true</property>
+                                </structure>
+                            </list-property>
+                            <property name="resultSetColumn">saldo_cdp</property>
+                        </data>
                     </cell>
                 </row>
             </footer>
         </table>
         <label id="123">
-            <text-property name="text"> </text-property>
-        </label>
-        <label id="237">
             <text-property name="text"> </text-property>
         </label>
         <grid id="238">
@@ -1985,7 +2074,7 @@ AND jef.dependencia_id = dep.id;]]></xml-property>
                             <structure>
                                 <property name="name">nom_proveedor</property>
                                 <text-property name="displayName">Dset_informacion_proveedor::nom_proveedor</text-property>
-                                <expression name="expression" type="javascript">"BENEFICIARIO: "+dataSetRow["nom_proveedor"]+" persona de tipo "+dataSetRow["tipopersona"]+" con número de identificación "+dataSetRow["num_documento"]</expression>
+                                <expression name="expression" type="javascript">"BENEFICIARIO: "+dataSetRow["nom_proveedor"]+" PERSONA DE TIPO "+dataSetRow["tipopersona"]+" NÚMERO DE IDENTIFICACIÓN "+dataSetRow["num_documento"]</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
                             </structure>
@@ -1999,7 +2088,7 @@ AND jef.dependencia_id = dep.id;]]></xml-property>
                                 <property name="name">codigo_nombre</property>
                                 <text-property name="displayName">codigo_nombre</text-property>
                                 <expression name="expression" type="javascript">if (dataSetRow["fuente_nombre"] != null) {
- "Fuente financimiento: "+dataSetRow["fuente_nombre"]+" - Código "+dataSetRow["fuente_codigo"]
+ "FUENTE DE FINANCIAMIENTO: "+dataSetRow["fuente_nombre"]+" - Código "+dataSetRow["fuente_codigo"]
 }</expression>
                                 <property name="dataType">string</property>
                                 <property name="allowExport">true</property>
@@ -2011,7 +2100,6 @@ AND jef.dependencia_id = dep.id;]]></xml-property>
             </row>
         </grid>
         <label id="245"/>
-        <label id="246"/>
         <grid id="247">
             <column id="248"/>
             <row id="249">
