@@ -36,6 +36,4 @@ SELECT * FROM financiera.solicitud_proceso_externo;
 SELECT * FROM administrativa.solicitud_disponibilidad WHERE id = 9807;
 SELECT * FROM administrativa.necesidad WHERE id = 9807;
 SELECT * FROM administrativa.modalidad_seleccion WHERE id = 8;
-
-
 */
