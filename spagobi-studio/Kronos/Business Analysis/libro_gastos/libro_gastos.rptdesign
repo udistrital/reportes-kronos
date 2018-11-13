@@ -1180,7 +1180,7 @@ WHERE id = ?;]]></xml-property>
         <label id="168">
             <property name="fontWeight">bold</property>
             <property name="textAlign">center</property>
-            <text-property name="text">EJECUCIÓN DE PRESUPUESTO</text-property>
+            <text-property name="text">EJECUCIÓN DE PRESUPUESTO DE GASTOS E INVERSIONES</text-property>
         </label>
         <label id="199"/>
         <grid id="172">
