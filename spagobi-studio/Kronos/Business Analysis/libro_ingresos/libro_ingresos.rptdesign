@@ -1096,13 +1096,82 @@ WHERE id = ?;]]></xml-property>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="orientation">landscape</property>
+            <property name="headerHeight">3.3cm</property>
+            <page-header>
+                <grid id="200">
+                    <column id="40"/>
+                    <column id="201"/>
+                    <column id="202"/>
+                    <row id="203">
+                        <cell id="204">
+                            <image id="205">
+                                <property name="height">1.139in</property>
+                                <property name="width">1.014in</property>
+                                <property name="source">file</property>
+                                <expression name="uri" type="constant">images/preloader.png</expression>
+                            </image>
+                        </cell>
+                        <cell id="206"/>
+                        <cell id="207">
+                            <property name="paddingTop">1pt</property>
+                            <property name="paddingLeft">1pt</property>
+                            <property name="paddingBottom">1pt</property>
+                            <property name="paddingRight">1pt</property>
+                            <property name="textAlign">right</property>
+                            <image id="208">
+                                <property name="height">0.764in</property>
+                                <property name="width">0.931in</property>
+                                <property name="source">file</property>
+                                <expression name="uri" type="constant">images/kronos.logo.png</expression>
+                            </image>
+                        </cell>
+                    </row>
+                </grid>
+            </page-header>
             <page-footer>
-                <text id="3">
-                    <property name="borderTopStyle">solid</property>
-                    <property name="borderTopWidth">thin</property>
-                    <property name="contentType">html</property>
-                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
-                </text>
+                <grid id="209">
+                    <column id="210"/>
+                    <column id="211"/>
+                    <column id="212"/>
+                    <row id="213">
+                        <cell id="214"/>
+                        <cell id="215"/>
+                        <cell id="216">
+                            <grid id="217">
+                                <column id="218"/>
+                                <column id="219"/>
+                                <column id="220"/>
+                                <column id="221"/>
+                                <row id="222">
+                                    <cell id="223">
+                                        <label id="227">
+                                            <property name="textAlign">right</property>
+                                            <text-property name="text">Página </text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="224">
+                                        <auto-text id="229">
+                                            <property name="textAlign">center</property>
+                                            <property name="type">page-number</property>
+                                        </auto-text>
+                                    </cell>
+                                    <cell id="225">
+                                        <label id="230">
+                                            <property name="textAlign">right</property>
+                                            <text-property name="text"> de </text-property>
+                                        </label>
+                                    </cell>
+                                    <cell id="226">
+                                        <auto-text id="228">
+                                            <property name="textAlign">center</property>
+                                            <property name="type">total-page</property>
+                                        </auto-text>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                </grid>
             </page-footer>
         </simple-master-page>
     </page-setup>
