@@ -1838,10 +1838,11 @@ WHERE id = ?;]]></xml-property>
                         <property name="textAlign">right</property>
                         <text-data id="115">
                             <structure name="toc"/>
-                            <expression name="valueExpr">if (row["disponible"] == 0 || row["disponible"] == "0") {
-"%"+0
+                            <expression name="valueExpr">result = new Number(BirtMath.safeDivide(row["compromisos_acumulado"]*100, row["disponible"], 0.00))
+if(result &lt; 10) {
+"%"+ BirtStr.left(String(result), 4)
 } else {
-"%"+(row["compromisos_acumulado"]*100)/row["disponible"]
+"%"+ BirtStr.left(String(result), 5)
 }</expression>
                             <property name="contentType">html</property>
                         </text-data>
@@ -1877,10 +1878,11 @@ WHERE id = ?;]]></xml-property>
                     <cell id="162">
                         <property name="textAlign">right</property>
                         <text-data id="167">
-                            <expression name="valueExpr">if (row["disponible"] == 0 || row["disponible"] == "0") {
-"%"+0
+                            <expression name="valueExpr">result = new Number(BirtMath.safeDivide(row["giro_acumulado"]*100, row["disponible"], 0.00))
+if(result &lt; 10) {
+"%"+ BirtStr.left(String(result), 4)
 } else {
-"%"+(row["giro_acumulado"]*100)/row["disponible"]
+"%"+ BirtStr.left(String(result), 5)
 }</expression>
                             <property name="contentType">html</property>
                         </text-data>
