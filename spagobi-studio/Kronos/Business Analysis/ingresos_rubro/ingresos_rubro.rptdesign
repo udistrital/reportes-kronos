@@ -1043,10 +1043,9 @@ WHERE id = ?;]]></xml-property>
                     <label id="369">
                         <property name="fontSize">9pt</property>
                         <property name="fontWeight">bold</property>
-                        <property name="textAlign">right</property>
+                        <property name="textAlign">left</property>
                         <text-property name="text">Vigencia</text-property>
                     </label>
-                    <label id="389"/>
                 </cell>
                 <cell id="359">
                     <data id="237">
@@ -1070,21 +1069,12 @@ WHERE id = ?;]]></xml-property>
                     <label id="370">
                         <property name="fontSize">9pt</property>
                         <property name="fontWeight">bold</property>
+                        <property name="textAlign">left</property>
                         <text-property name="text">Unidad Ejecutora</text-property>
                     </label>
                 </cell>
-                <cell id="363"/>
-                <cell id="364"/>
-            </row>
-            <row id="365">
-                <cell id="366"/>
-                <cell id="367">
-                    <label id="373">
-                        <property name="fontSize">9pt</property>
-                        <property name="fontWeight">bold</property>
-                        <property name="display">inline</property>
-                        <text-property name="text">Código: </text-property>
-                    </label>
+                <cell id="363">
+                    <property name="textAlign">left</property>
                     <data id="371">
                         <property name="display">inline</property>
                         <property name="dataSet">Dset_UnidadEjecutora_Unica</property>
@@ -1100,7 +1090,8 @@ WHERE id = ?;]]></xml-property>
                         <property name="resultSetColumn">id</property>
                     </data>
                 </cell>
-                <cell id="368">
+                <cell id="364">
+                    <property name="textAlign">left</property>
                     <label id="374">
                         <property name="fontSize">9pt</property>
                         <property name="fontWeight">bold</property>
@@ -1126,26 +1117,15 @@ WHERE id = ?;]]></xml-property>
             </row>
             <row id="375">
                 <cell id="376">
-                    <label id="390"/>
                     <label id="383">
                         <property name="fontSize">9pt</property>
                         <property name="fontWeight">bold</property>
-                        <property name="textAlign">right</property>
+                        <property name="textAlign">left</property>
                         <text-property name="text">Rubro</text-property>
                     </label>
                 </cell>
-                <cell id="377"/>
-                <cell id="378"/>
-            </row>
-            <row id="379">
-                <cell id="380"/>
-                <cell id="381">
-                    <label id="386">
-                        <property name="fontSize">9pt</property>
-                        <property name="fontWeight">bold</property>
-                        <property name="display">inline</property>
-                        <text-property name="text">Código: </text-property>
-                    </label>
+                <cell id="377">
+                    <property name="textAlign">left</property>
                     <data id="384">
                         <property name="display">inline</property>
                         <property name="dataSet">Dset_Rubro_Unico</property>
@@ -1161,7 +1141,8 @@ WHERE id = ?;]]></xml-property>
                         <property name="resultSetColumn">codigo</property>
                     </data>
                 </cell>
-                <cell id="382">
+                <cell id="378">
+                    <property name="textAlign">left</property>
                     <label id="388">
                         <property name="fontSize">9pt</property>
                         <property name="fontWeight">bold</property>
