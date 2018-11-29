@@ -19,4 +19,21 @@ rub.id = 33021;
 /*
 SELECT * FROM financiera.estado_ingreso;
 SELECT * FROM financiera.rubro;
+
+SELECT DISTINCT ON (rub.id) 
+rub.id rubro,
+ing.id, ing.fecha_ingreso, rub.codigo
+FROM 
+financiera.ingreso ing
+INNER JOIN financiera.fuente_financiamiento fue
+ON ing.fuente_financiamiento = fue.id
+INNER JOIN financiera.fuente_financiamiento_apropiacion fueapr
+ON fueapr.fuente_financiamiento = fue.id
+INNER JOIN financiera.apropiacion apr
+ON fueapr.apropiacion = apr.id
+INNER JOIN financiera.rubro rub
+ON apr.rubro = rub.id
+WHERE 
+ing.fecha_ingreso BETWEEN ? AND ?
+ORDER BY rub.id, rub.codigo DESC ;
 */
