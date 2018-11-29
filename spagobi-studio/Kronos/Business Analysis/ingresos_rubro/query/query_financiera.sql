@@ -1,3 +1,18 @@
+SELECT DISTINCT ON (rub.id)
+ing.id, ing.fecha_ingreso, rub.id, rub.codigo
+FROM 
+financiera.ingreso ing
+INNER JOIN financiera.ingreso_concepto ingcon
+ON ingcon.ingreso = ing.id
+INNER JOIN financiera.concepto_tesoral contes
+ON ingcon.concepto = contes.id
+INNER JOIN financiera.rubro rub
+ON contes.rubro = rub.id
+WHERE 
+ing.fecha_ingreso BETWEEN '2018-01-10' AND '2018-09-30'
+ORDER BY rub.id, rub.codigo;
+
+/*
 SELECT ing.fecha_ingreso, doc.fecha_documento, doc.num_documento, ingcon.valor_agregado
 FROM financiera.ingreso ing ,
 financiera.estado_ingreso esting ,
@@ -16,24 +31,7 @@ ue.id = 1 AND
 rub.id = 33021;
 -- rubros id: 33041 4-1, id 33021 2-1-001-09-00-00-0000-01
 
-/*
+SELECT * FROM financiera.ingreso;
 SELECT * FROM financiera.estado_ingreso;
 SELECT * FROM financiera.rubro;
-
-SELECT DISTINCT ON (rub.id) 
-rub.id rubro,
-ing.id, ing.fecha_ingreso, rub.codigo
-FROM 
-financiera.ingreso ing
-INNER JOIN financiera.fuente_financiamiento fue
-ON ing.fuente_financiamiento = fue.id
-INNER JOIN financiera.fuente_financiamiento_apropiacion fueapr
-ON fueapr.fuente_financiamiento = fue.id
-INNER JOIN financiera.apropiacion apr
-ON fueapr.apropiacion = apr.id
-INNER JOIN financiera.rubro rub
-ON apr.rubro = rub.id
-WHERE 
-ing.fecha_ingreso BETWEEN ? AND ?
-ORDER BY rub.id, rub.codigo DESC ;
 */
