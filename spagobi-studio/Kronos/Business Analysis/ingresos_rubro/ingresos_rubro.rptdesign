@@ -1263,12 +1263,18 @@ WHERE id = ?;]]></xml-property>
                 <property name="width">1.3333333333333333in</property>
             </column>
             <column id="355">
-                <property name="width">2.4895833333333335in</property>
+                <property name="width">1.0833333333333333in</property>
             </column>
             <column id="356">
-                <property name="width">4.125in</property>
+                <property name="width">5.53125in</property>
             </column>
             <row id="357">
+                <property name="borderLeftStyle">solid</property>
+                <property name="borderLeftWidth">thin</property>
+                <property name="borderRightStyle">solid</property>
+                <property name="borderRightWidth">thin</property>
+                <property name="borderTopStyle">solid</property>
+                <property name="borderTopWidth">thin</property>
                 <cell id="358">
                     <label id="369">
                         <property name="fontSize">9pt</property>
@@ -1294,6 +1300,12 @@ WHERE id = ?;]]></xml-property>
                 <cell id="360"/>
             </row>
             <row id="361">
+                <property name="borderBottomStyle">solid</property>
+                <property name="borderBottomWidth">thin</property>
+                <property name="borderLeftStyle">solid</property>
+                <property name="borderLeftWidth">thin</property>
+                <property name="borderRightStyle">solid</property>
+                <property name="borderRightWidth">thin</property>
                 <cell id="362">
                     <property name="textAlign">right</property>
                     <label id="370">
@@ -1304,7 +1316,7 @@ WHERE id = ?;]]></xml-property>
                     </label>
                 </cell>
                 <cell id="363">
-                    <property name="textAlign">left</property>
+                    <property name="textAlign">center</property>
                     <data id="371">
                         <property name="display">inline</property>
                         <property name="dataSet">Dset_UnidadEjecutora_Unica</property>
@@ -1325,11 +1337,12 @@ WHERE id = ?;]]></xml-property>
                     <label id="374">
                         <property name="fontSize">9pt</property>
                         <property name="fontWeight">bold</property>
-                        <property name="textAlign">left</property>
+                        <property name="textAlign">center</property>
                         <property name="display">inline</property>
                         <text-property name="text">Nombre: </text-property>
                     </label>
                     <data id="372">
+                        <property name="textAlign">center</property>
                         <property name="display">inline</property>
                         <property name="dataSet">Dset_UnidadEjecutora_Unica</property>
                         <list-property name="boundDataColumns">
@@ -1544,7 +1557,7 @@ WHERE id = ?;]]></xml-property>
                         <cell id="681">
                             <label id="686">
                                 <property name="fontWeight">bold</property>
-                                <text-property name="text">Fehca Acta de Ingreso</text-property>
+                                <text-property name="text">Fecha Acta de Ingreso</text-property>
                             </label>
                         </cell>
                         <cell id="682">
